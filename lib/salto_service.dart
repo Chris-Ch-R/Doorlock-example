@@ -11,13 +11,13 @@ class ServiceSalto {
           'Connected to: ${socket.remoteAddress.address}:${socket.remotePort}');
 
       // Send data
-      socket.writeln('\x02CNMB|+66867866564|101\x03');
-      print("socket.write : \x02CNMB|+66867866564|101\x03");
+      String command = "\x02CNMB|+66867866564|101|\x03";
+      socket.writeln(command);
+      print("socket.write : ${command}");
       // Listen for incoming data
       socket.listen(
         (data) {
-          String s = new String.fromCharCodes(data);
-          print("data : ${data}");
+          print("raw data : ${data}");
           print('Received: ${String.fromCharCodes(data)}');
         },
         onDone: () {
